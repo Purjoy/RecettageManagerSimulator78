@@ -41,6 +41,10 @@ Route::group(['middleware' => ['web']], function () {
         return view('bap.index');
     })->middleware('web');
 
+    Route::get('/user', function () {
+        return view('user.index');
+    })->middleware('web');
+
     Route::get('/admin', function () {
         return view('admin.bap');
     })->middleware('web');
@@ -59,5 +63,5 @@ Route::group(['middleware' => 'web'], function () {
     });
     Route::get('/home', 'HomeController@index');
 });
-Route::resource('/users', 'UserController');
+Route::resource('/user', 'UserController');
 Route::resource('/contacts', 'ContactController');

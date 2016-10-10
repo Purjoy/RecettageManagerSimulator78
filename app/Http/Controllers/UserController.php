@@ -18,7 +18,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('users.index');
+        return view('home');
     }
 
     /**
@@ -50,8 +50,19 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::findOrfail($id);
-        return view('users.show', compact('users'));
+        $user = User::find($id);
+
+        if(!$user) {
+
+            return redirect()->to('/');
+        }
+
+        return view('user.show')->with(['user' => $user]);
+
+        /**
+         * On retourne une vue où on affiche seulement la bap avec l'id dans l'URL
+         */
+
     }
 
     /**
@@ -62,8 +73,20 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::findOrfail($id);
-        return view('users.edit', compact('users'));
+
+        $users = User::all()->lists('name', 'id');
+        $user = User::find($id);
+        if(!$user) {
+
+            return redirect()->to('/');
+        }
+
+        return view('user.edit')->with(compact('user', 'post'));
+
+        /**
+         * On affiche un formulaire pour edit un article
+         */
+
     }
     /**
      * Update the specified resource in storage.
@@ -72,13 +95,33 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\ValidateUserRequest $request, $id)
     {
-        $user = User::findOrfail($id);
-        $input = $request->input();
-        $input['password'] = Hash::make($request->password);
-        $user->fill($input)->save();
-        return redirect()->back()->with('success', 'Votre mot de passe a été modifié');
+        $user =User::find($id);
+
+        if(!$user) {
+
+            return redirect()->to('/articles');
+
+
+        }
+
+        $user->email = $request->email;
+        $user->name = $request->name;
+        $user->save();
+        $imageName = $user->id . '.' .
+            $request->file('image')->getClientOriginalExtension();
+
+        $request->file('image')->move(
+            base_path() . '/public/images/', $imageName
+        );
+
+        return redirect()->route('user.show', $user->$id);
+
+        /**
+         * On update la database avec les valeurs du form de l'edit
+         */
+
     }
 
     /**
