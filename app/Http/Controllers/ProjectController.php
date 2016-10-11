@@ -27,9 +27,9 @@ class ProjectController extends Controller
 
     public function index()
     {
-        $projects = Projects::all();
+        $project = Project::all();
 
-        return view('articles.index')->with(compact('posts'));
+        return view('project.index')->with(compact('project'));
 
         /**
          * On retourne une vue avec tout les post affichés dessus
