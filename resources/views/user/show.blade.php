@@ -11,6 +11,7 @@
             <h2><label>Mail :</label> {{$user->email}} </h2><br>
             <p>{{$user->description}}</p>
             <img src="../../public/images/{{$user->id}}.jpg" style="height: 200px; width: auto;" onerror="this.src='../../public/images/default.png'">
-    </div>
+
+        </div>
 
 @endsection

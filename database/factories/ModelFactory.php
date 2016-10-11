@@ -22,7 +22,12 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\Models\Project::class, function (Faker\Generator $faker) {
+    return [
 
+        'title' => $faker->text(20)
+    ];
+});
 
 $factory->define(App\Models\Bap::class, function (Faker\Generator $faker) {
     return [
