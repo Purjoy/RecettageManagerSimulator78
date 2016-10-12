@@ -98,51 +98,40 @@ class ProjectController extends Controller
 
     }
 
-
-
     public function edit($id)
     {
+        $project = Project::where('id', $id)->first();
 
-        $users = User::all()->lists('name', 'id');
-        $post = Post::find($id);
-        if(!$post) {
-
-            return redirect()->to('/articles');
-        }
-
-        return view('articles.edit')->with(compact('users', 'post'));
+        return view('project.editBriefPitch')->with(compact('project'));
 
         /**
-         * On affiche un formulaire pour edit un article
+         * On affiche une vue avec l'article correspondant à l'url
          */
 
     }
 
-    public function update(Requests\ValidatePostRequest $request, $id)
+    public function update(Requests\ValidateProjectRequest $request, $id)
     {
-        $post =Post::find($id);
+        $project =Project::find($id);
 
-        if(!$post) {
+        if(!$project) {
 
-            return redirect()->to('/articles');
+            return redirect()->to('/project');
 
 
         }
 
-        $post->title = $request->title;
-        $post->description = $request->description;
-        $post->user_id = $request->user_id;
+        $project->brief = $request->brief;
 
-        $post->save();
+        $project->save();
 
-        return redirect()->route('articles.show', $post->$id);
+        return redirect()->route('project.show', $project->$id);
 
         /**
          * On update la database avec les valeurs du form de l'edit
          */
 
     }
-
 
     public function destroy($id)
     {

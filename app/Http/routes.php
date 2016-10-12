@@ -33,7 +33,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::group(['prefix' => 'bap'], function() {
 
     });
+    Route::group(['prefix' => 'project'], function() {
 
+    });
     Route::group(['prefix' => 'admin'], function() {
 
     });
@@ -70,3 +72,10 @@ Route::group(['middleware' => 'web'], function () {
 Route::resource('/user', 'UserController');
 Route::resource('/project', 'ProjectController');
 Route::resource('/contacts', 'ContactController');
+
+Route::post('project/{id}/updateBrief', function ($id) {
+    //
+})->name('project.updateBrief');
+Route::get('project/{id}/editBriefPitch', function ($id) {
+    //
+})->name('editBriefPitch');

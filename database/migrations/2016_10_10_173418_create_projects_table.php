@@ -16,6 +16,8 @@ class CreateProjectsTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('title');
+            $table->string('brief');
+            $table->string('pitch');
         });
     }
 
