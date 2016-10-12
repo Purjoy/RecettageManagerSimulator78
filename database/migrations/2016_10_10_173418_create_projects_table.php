@@ -18,6 +18,10 @@ class CreateProjectsTable extends Migration
             $table->string('title');
             $table->string('brief');
             $table->string('pitch');
+            $table->string('presentationClient');
+            $table->string('process');
+            $table->string('organisation');
+            $table->string('information');
         });
     }
 

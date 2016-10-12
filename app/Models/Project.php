@@ -9,7 +9,8 @@ class Project extends Model
 
     protected $fillable = [
 
-         'title', 'cdcf', 'pitch', 'brief'
+         'title', 'cdcf', 'pitch', 'brief', 'presentationClient', 'process', 'organisation',
+        'information'
 
 
     ];

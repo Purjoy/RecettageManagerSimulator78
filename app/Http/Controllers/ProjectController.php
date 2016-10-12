@@ -85,10 +85,6 @@ class ProjectController extends Controller
     public function show($id)
     {
         $project = Project::where('id', $id)->first();
-        if(!$project) {
-
-            return redirect()->to('home');
-        }
 
         return view('project.show')->with(compact('project'));
 
@@ -114,18 +110,11 @@ class ProjectController extends Controller
     {
         $project =Project::find($id);
 
-        if(!$project) {
-
-            return redirect()->to('/project');
-
-
-        }
-
         $project->brief = $request->brief;
-
+        $project->pitch = $request->pitch;
         $project->save();
 
-        return redirect()->route('project.show', $project->$id);
+        return redirect()->route('project.show', $id);
 
         /**
          * On update la database avec les valeurs du form de l'edit
