@@ -13,7 +13,7 @@
 {!! Form::label('Brief') !!}
 {!! Form::textarea('brief', $project->brief, ['class' => 'form-control']) !!}
 {!! Form::label('Présentation Client') !!}
-{!! Form::textarea('presentatioClient', $project->presentationClient, ['class' => 'form-control']) !!}
+{!! Form::textarea('presentationClient', $project->presentationClient, ['class' => 'form-control']) !!}
 {!! Form::label('Process') !!}
 {!! Form::textarea('process', $project->process, ['class' => 'form-control']) !!}
 {!! Form::label('Organisation du Projet') !!}

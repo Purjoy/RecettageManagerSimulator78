@@ -112,6 +112,11 @@ class ProjectController extends Controller
 
         $project->brief = $request->brief;
         $project->pitch = $request->pitch;
+        $project->organisation = $request->organisation;
+        $project->process = $request->process;
+        $project->presentationClient = $request->presentationClient;
+        $project->information = $request->information;
+        $project->organisation= $request->organisation;
         $project->save();
 
         return redirect()->route('project.show', $id);
